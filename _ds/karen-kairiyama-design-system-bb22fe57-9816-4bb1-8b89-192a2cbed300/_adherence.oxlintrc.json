@@ -1,0 +1,173 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "logo/**",
+              "ui_kits/site/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Outfit|Outfit Variable|Cormorant Garamond))/i]",
+        "message": "Font not provided by the design system. Available: Outfit, Outfit Variable, Cormorant Garamond."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {},
+    "tokens": [
+      "--kk-bg",
+      "--kk-bg-2",
+      "--kk-cream",
+      "--kk-dur-base",
+      "--kk-dur-curtain",
+      "--kk-dur-fast",
+      "--kk-dur-slow",
+      "--kk-dur-theme",
+      "--kk-ease",
+      "--kk-ease-in-out",
+      "--kk-ease-out",
+      "--kk-fg",
+      "--kk-glow",
+      "--kk-hover",
+      "--kk-ink",
+      "--kk-leading-body",
+      "--kk-leading-display",
+      "--kk-leading-snug",
+      "--kk-leading-tight",
+      "--kk-overlay",
+      "--kk-press",
+      "--kk-radius-0",
+      "--kk-radius-hair",
+      "--kk-radius-pill",
+      "--kk-recess",
+      "--kk-rule",
+      "--kk-sans",
+      "--kk-serif",
+      "--kk-smoke",
+      "--kk-space-1",
+      "--kk-space-10",
+      "--kk-space-11",
+      "--kk-space-2",
+      "--kk-space-3",
+      "--kk-space-4",
+      "--kk-space-5",
+      "--kk-space-6",
+      "--kk-space-7",
+      "--kk-space-8",
+      "--kk-space-9",
+      "--kk-text-2xl",
+      "--kk-text-3xl",
+      "--kk-text-4xl",
+      "--kk-text-5xl",
+      "--kk-text-lg",
+      "--kk-text-md",
+      "--kk-text-sm",
+      "--kk-text-xl",
+      "--kk-text-xs",
+      "--kk-track-display",
+      "--kk-track-eyebrow",
+      "--kk-track-normal",
+      "--kk-track-tight",
+      "--kk-track-wide"
+    ],
+    "tokenKinds": {
+      "--kk-ink": "color",
+      "--kk-cream": "color",
+      "--kk-sans": "font",
+      "--kk-serif": "font",
+      "--kk-text-xs": "font",
+      "--kk-text-sm": "font",
+      "--kk-text-md": "font",
+      "--kk-text-lg": "font",
+      "--kk-text-xl": "font",
+      "--kk-text-2xl": "font",
+      "--kk-text-3xl": "font",
+      "--kk-text-4xl": "font",
+      "--kk-text-5xl": "font",
+      "--kk-track-display": "spacing",
+      "--kk-track-tight": "spacing",
+      "--kk-track-normal": "spacing",
+      "--kk-track-eyebrow": "spacing",
+      "--kk-track-wide": "spacing",
+      "--kk-leading-display": "other",
+      "--kk-leading-tight": "other",
+      "--kk-leading-snug": "other",
+      "--kk-leading-body": "other",
+      "--kk-space-1": "spacing",
+      "--kk-space-2": "spacing",
+      "--kk-space-3": "spacing",
+      "--kk-space-4": "spacing",
+      "--kk-space-5": "spacing",
+      "--kk-space-6": "spacing",
+      "--kk-space-7": "spacing",
+      "--kk-space-8": "spacing",
+      "--kk-space-9": "spacing",
+      "--kk-space-10": "spacing",
+      "--kk-space-11": "spacing",
+      "--kk-radius-0": "radius",
+      "--kk-radius-hair": "radius",
+      "--kk-radius-pill": "radius",
+      "--kk-ease": "other",
+      "--kk-ease-out": "other",
+      "--kk-ease-in-out": "other",
+      "--kk-dur-fast": "other",
+      "--kk-dur-base": "other",
+      "--kk-dur-slow": "other",
+      "--kk-dur-curtain": "other",
+      "--kk-dur-theme": "other",
+      "--kk-bg": "color",
+      "--kk-fg": "color",
+      "--kk-bg-2": "color",
+      "--kk-recess": "color",
+      "--kk-smoke": "color",
+      "--kk-rule": "color",
+      "--kk-hover": "color",
+      "--kk-press": "color",
+      "--kk-glow": "color",
+      "--kk-overlay": "color"
+    },
+    "fontFamilies": [
+      "Cormorant Garamond",
+      "Outfit",
+      "Outfit Variable"
+    ]
+  }
+}

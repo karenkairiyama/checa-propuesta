@@ -1,0 +1,261 @@
+/* ============================================================
+   Karen Kairiyama — Colors & Type
+   Editorial · luxury minimalism · fashion tech.
+   Theme-switchable (dark/light). Typography impact from
+   size + air + composition — never from weight.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&display=swap');
+
+@font-face {
+  font-family: 'Outfit'; font-style: normal; font-weight: 100;
+  font-display: swap;
+  src: url('fonts/Outfit-Thin.woff2') format('woff2'),
+       url('fonts/Outfit-Thin.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Outfit'; font-style: normal; font-weight: 200;
+  font-display: swap;
+  src: url('fonts/Outfit-ExtraLight.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Outfit'; font-style: normal; font-weight: 300;
+  font-display: swap;
+  src: url('fonts/Outfit-Light.woff2') format('woff2'),
+       url('fonts/Outfit-Light.woff') format('woff'),
+       url('fonts/Outfit-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Outfit'; font-style: normal; font-weight: 400;
+  font-display: swap;
+  src: url('fonts/Outfit-Regular.woff2') format('woff2'),
+       url('fonts/Outfit-Regular.woff') format('woff'),
+       url('fonts/Outfit-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Outfit'; font-style: normal; font-weight: 500;
+  font-display: swap;
+  src: url('fonts/Outfit-Medium.woff2') format('woff2'),
+       url('fonts/Outfit-Medium.woff') format('woff'),
+       url('fonts/Outfit-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Outfit'; font-style: normal; font-weight: 600;
+  font-display: swap;
+  src: url('fonts/Outfit-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Outfit'; font-style: normal; font-weight: 700;
+  font-display: swap;
+  src: url('fonts/Outfit-Bold.woff2') format('woff2'),
+       url('fonts/Outfit-Bold.woff') format('woff'),
+       url('fonts/Outfit-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Outfit'; font-style: normal; font-weight: 800;
+  font-display: swap;
+  src: url('fonts/Outfit-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Outfit'; font-style: normal; font-weight: 900;
+  font-display: swap;
+  src: url('fonts/Outfit-Black.woff2') format('woff2'),
+       url('fonts/Outfit-Black.woff') format('woff'),
+       url('fonts/Outfit-Black.ttf') format('truetype');
+}
+
+/* Variable-axis support — use as `font-variation-settings: "wght" 350`. */
+@font-face {
+  font-family: 'Outfit Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/Outfit-Variable.woff2') format('woff2-variations'),
+       url('fonts/Outfit-Variable.ttf') format('truetype-variations');
+}
+
+:root {
+  /* ---------- BASE PALETTE (anchors) ---------- */
+  --kk-ink:        #0D0D0B;   /* negro profundo */
+  --kk-cream:      #F5F0D0;   /* crema cálido */
+
+  /* ---------- TYPE FAMILIES ---------- */
+  --kk-sans:    'Outfit', ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;   /* @kind font */
+  --kk-serif:   'Cormorant Garamond', 'EB Garamond', Garamond, "Times New Roman", serif;     /* @kind font */
+
+  /* ---------- TYPE SCALE ----------
+     Editorial — generous, fashion-mag scale. Display goes BIG.
+     Impact comes from size + spacing + composition, never weight. */
+  --kk-text-xs:    11px;
+  --kk-text-sm:    13px;
+  --kk-text-md:    15px;
+  --kk-text-lg:    18px;
+  --kk-text-xl:    22px;
+  --kk-text-2xl:   30px;
+  --kk-text-3xl:   clamp(36px, 4.5vw, 56px);
+  --kk-text-4xl:   clamp(56px, 8vw, 112px);
+  --kk-text-5xl:   clamp(72px, 12vw, 200px);    /* hero display */
+
+  /* Letter-spacing */
+  --kk-track-display: -0.025em;   /* big Regular display */
+  --kk-track-tight:   -0.015em;
+  --kk-track-normal:  0;          /* @kind spacing */
+  --kk-track-eyebrow: 0.22em;
+  --kk-track-wide:    0.08em;
+
+  /* Line-height (unitless ratios) */
+  --kk-leading-display: 0.95;   /* @kind other */
+  --kk-leading-tight:   1.05;   /* @kind other */
+  --kk-leading-snug:    1.2;    /* @kind other */
+  --kk-leading-body:    1.6;    /* @kind other */
+
+  /* ---------- SPACING (8px base) ---------- */
+  --kk-space-1:  4px;   --kk-space-2:  8px;   --kk-space-3:  12px;
+  --kk-space-4:  16px;  --kk-space-5:  24px;  --kk-space-6:  32px;
+  --kk-space-7:  48px;  --kk-space-8:  64px;  --kk-space-9:  96px;
+  --kk-space-10: 128px; --kk-space-11: 192px;
+
+  /* ---------- RADII ----------
+     Almost nothing rounds. Pill for CTAs only. */
+  --kk-radius-0:    0px;
+  --kk-radius-hair: 2px;
+  --kk-radius-pill: 999px;
+
+  /* ---------- MOTION ----------
+     Cinemático, suave, sin rebotes. */
+  --kk-ease:        cubic-bezier(0.22, 1, 0.36, 1);   /* @kind other */
+  --kk-ease-out:    cubic-bezier(0.16, 1, 0.3, 1);    /* @kind other */
+  --kk-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);   /* @kind other */
+  --kk-dur-fast:    180ms;     /* @kind other */
+  --kk-dur-base:    320ms;     /* @kind other */
+  --kk-dur-slow:    640ms;     /* @kind other */
+  --kk-dur-curtain: 1000ms;    /* @kind other */
+  --kk-dur-theme:   500ms;     /* @kind other */
+}
+
+/* ============================================================
+   THEMES
+   Toggle by setting [data-theme="dark"] or [data-theme="light"]
+   on <html> or any container. Defaults to dark.
+   ============================================================ */
+
+:root,
+[data-theme="dark"] {
+  --kk-bg:        var(--kk-ink);
+  --kk-fg:        var(--kk-cream);
+  --kk-bg-2:      #161412;                    /* elevated card surface */
+  --kk-recess:    #A89B70;                    /* beige cálido — muted text */
+  --kk-smoke:     #2A2724;                    /* gris humo — borders/dividers */
+  --kk-rule:      rgba(245, 240, 208, 0.10);  /* hairline @ low opacity */
+  --kk-hover:     rgba(245, 240, 208, 0.72);
+  --kk-press:     rgba(245, 240, 208, 0.48);
+  --kk-glow:      rgba(245, 240, 208, 0.05);  /* very subtle radial light */
+  --kk-overlay:   rgba(13, 13, 11, 0.72);
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --kk-bg:        var(--kk-cream);
+  --kk-fg:        var(--kk-ink);
+  --kk-bg-2:      #ECE5C0;                    /* slightly deeper cream */
+  --kk-recess:    #7A6F4A;                    /* beige oscuro — muted text */
+  --kk-smoke:     #D9D2B0;                    /* gris cálido — borders */
+  --kk-rule:      rgba(13, 13, 11, 0.10);
+  --kk-hover:     rgba(13, 13, 11, 0.72);
+  --kk-press:     rgba(13, 13, 11, 0.48);
+  --kk-glow:      rgba(13, 13, 11, 0.04);
+  --kk-overlay:   rgba(245, 240, 208, 0.72);
+  color-scheme: light;
+}
+
+/* Body-level theme transition. Everything fades together. */
+html, body { transition: background var(--kk-dur-theme) var(--kk-ease), color var(--kk-dur-theme) var(--kk-ease); }
+* { transition-property: background-color, color, border-color, fill, stroke; transition-duration: var(--kk-dur-theme); transition-timing-function: var(--kk-ease); }
+
+/* ============================================================
+   SEMANTIC TYPE ROLES
+   Headlines = Regular (400). Impact from size, not weight.
+   ============================================================ */
+
+.kk-display {
+  font-family: var(--kk-sans);
+  font-weight: 400;                          /* Regular — never Black */
+  font-size: var(--kk-text-5xl);
+  line-height: var(--kk-leading-display);
+  letter-spacing: var(--kk-track-display);
+}
+
+.kk-h1 {
+  font-family: var(--kk-sans);
+  font-weight: 400;
+  font-size: var(--kk-text-4xl);
+  line-height: var(--kk-leading-display);
+  letter-spacing: var(--kk-track-display);
+}
+
+.kk-h2 {
+  font-family: var(--kk-sans);
+  font-weight: 400;
+  font-size: var(--kk-text-3xl);
+  line-height: var(--kk-leading-tight);
+  letter-spacing: var(--kk-track-tight);
+}
+
+.kk-h3 {
+  font-family: var(--kk-sans);
+  font-weight: 300;
+  font-size: var(--kk-text-2xl);
+  line-height: var(--kk-leading-snug);
+  letter-spacing: var(--kk-track-tight);
+}
+
+.kk-eyebrow {
+  font-family: var(--kk-sans);
+  font-weight: 400;
+  font-size: var(--kk-text-xs);
+  letter-spacing: var(--kk-track-eyebrow);
+  text-transform: uppercase;
+}
+
+.kk-body {
+  font-family: var(--kk-sans);
+  font-weight: 400;
+  font-size: var(--kk-text-md);
+  line-height: var(--kk-leading-body);
+}
+
+.kk-body-lg {
+  font-family: var(--kk-sans);
+  font-weight: 300;
+  font-size: var(--kk-text-lg);
+  line-height: var(--kk-leading-body);
+}
+
+.kk-caption {
+  font-family: var(--kk-sans);
+  font-weight: 400;
+  font-size: var(--kk-text-sm);
+  letter-spacing: var(--kk-track-wide);
+  text-transform: uppercase;
+}
+
+/* Emotional serif — for pull quotes and one-word italic moments inside body. */
+.kk-serif {
+  font-family: var(--kk-serif);
+  font-weight: 300; font-style: italic;
+  letter-spacing: 0;
+}
+
+.kk-serif-display {
+  font-family: var(--kk-serif);
+  font-weight: 300; font-style: italic;
+  font-size: var(--kk-text-4xl);
+  line-height: 1.1;
+}
+
+.kk-quote {
+  font-family: var(--kk-serif);
+  font-weight: 300; font-style: italic;
+  font-size: var(--kk-text-3xl);
+  line-height: 1.3;
+}

@@ -1,0 +1,7 @@
+/* ============================================================
+   Karen Kairiyama — Design System root stylesheet
+   Single entry point. Consumers link THIS file; it pulls in the
+   token + type foundations. (Component/site CSS stays scoped to
+   its own directory and is imported there.)
+   ============================================================ */
+@import url('colors_and_type.css');
