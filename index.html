@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/karen-kairiyama-design-system-bb22fe57-9816-4bb1-8b89-192a2cbed300/styles.css">
+  <script src="_ds/karen-kairiyama-design-system-bb22fe57-9816-4bb1-8b89-192a2cbed300/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #0D0D0B; }
+    * { box-sizing: border-box; }
+    @keyframes kk-rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+    @keyframes kk-orbit { to { transform: rotate(360deg); } }
+    @keyframes kk-orbit-rev { to { transform: rotate(-360deg); } }
+    @keyframes kk-fade-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+  </style>
+</helmet>
+
+<div style="font-family: var(--kk-sans);">
+
+  <!-- ====== Chrome fijo: progreso + topbar (blend difference invierte sobre ambos fondos) ====== -->
+  <div ref="{{ progressRef }}" style="position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: #F5F0D0; mix-blend-mode: difference; z-index: 50; pointer-events: none;"></div>
+  <div ref="{{ topbarRef }}" style="position: fixed; top: 0; left: 0; right: 0; z-index: 40; display: flex; justify-content: space-between; align-items: baseline; padding: 22px clamp(24px, 5vw, 64px); mix-blend-mode: difference; color: #F5F0D0; opacity: 0; transition: opacity 320ms var(--kk-ease); pointer-events: none;">
+    <span style="font-size: 15px; font-weight: 400; letter-spacing: 0.08em;">CHECA</span>
+    <span style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;">Evolución digital · 2026</span>
+  </div>
+  <div ref="{{ haloRef }}" style="position: fixed; left: 0; top: 0; width: 32px; height: 32px; border: 1px solid #F5F0D0; border-radius: 999px; mix-blend-mode: difference; z-index: 60; pointer-events: none; opacity: 0; transform: translate(-100px, -100px);"></div>
+
+  <!-- ====== HERO — masthead peso vivo (crema) ====== -->
+  <section data-screen-label="Portada" data-theme="light" onMouseMove="{{ heroMove }}" onMouseLeave="{{ heroLeave }}" style="background: var(--kk-bg); color: var(--kk-fg); min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(28px, 4vw, 48px) clamp(24px, 5vw, 64px) clamp(64px, 8vh, 96px); position: relative; overflow: hidden; cursor: default;">
+    <div ref="{{ heroGlowRef }}" style="position: absolute; top: -20%; right: -10%; width: 70vw; height: 70vw; background: radial-gradient(circle, var(--kk-glow) 0%, transparent 65%); pointer-events: none;"></div>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--kk-rule); padding-bottom: 14px; animation: kk-rise 1s var(--kk-ease) both;">
+      <span class="kk-eyebrow" style="color: var(--kk-recess);">Propuesta estratégica</span>
+      <span class="kk-eyebrow" style="color: var(--kk-recess);">Evolución digital</span>
+      <span class="kk-eyebrow" style="color: var(--kk-recess);">Junio 2026</span>
+    </div>
+    <div ref="{{ heroTitleRef }}" style="font-family: 'Outfit Variable', var(--kk-sans); font-size: clamp(92px, 21vw, 330px); line-height: 1; letter-spacing: -0.04em; text-align: center; padding: 0.04em 0; animation: kk-rise 1.2s var(--kk-ease) 150ms both;">
+      <span ref="{{ hL0 }}" style="display: inline-block; font-variation-settings: 'wght' 400;">C</span><span ref="{{ hL1 }}" style="display: inline-block; font-variation-settings: 'wght' 400;">H</span><span ref="{{ hL2 }}" style="display: inline-block; font-variation-settings: 'wght' 400;">E</span><span ref="{{ hL3 }}" style="display: inline-block; font-variation-settings: 'wght' 400;">C</span><span ref="{{ hL4 }}" style="display: inline-block; font-variation-settings: 'wght' 400;">A</span>
+    </div>
+    <div style="animation: kk-rise 1s var(--kk-ease) 400ms both;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--kk-rule); padding-top: 20px; gap: 40px; flex-wrap: wrap;">
+        <span style="font-weight: 300; font-size: clamp(16px, 1.5vw, 20px); letter-spacing: -0.015em;">Una marca que ya existe. Una experiencia digital a su altura.</span>
+        <span style="font-size: 13px; color: var(--kk-recess);">Estrategia y dirección creativa × Karen Kairiyama</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: clamp(28px, 5vh, 56px);">
+        <span class="kk-eyebrow" style="color: var(--kk-recess);">Scroll</span>
+        <span style="width: 1px; height: 36px; background: var(--kk-fg); opacity: 0.35;"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CAPÍTULO 01 (ink) ====== -->
+  <section data-screen-label="01 El valor de una marca que ya existe" data-theme="dark" style="background: var(--kk-bg); color: var(--kk-fg); padding: clamp(80px, 14vw, 180px) clamp(24px, 6vw, 120px); position: relative; overflow: hidden;">
+    <div data-parallax="0.05" style="position: absolute; right: -2%; top: 4%; font-size: clamp(240px, 34vw, 540px); font-weight: 400; line-height: 1; color: var(--kk-fg); opacity: 0.04; pointer-events: none;">01</div>
+    <div style="position: relative; max-width: 1200px; margin: 0 auto;">
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+        <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 28px;">01 — El valor de una marca que ya existe</div>
+        <p style="font-weight: 300; font-size: clamp(18px, 1.9vw, 26px); line-height: 1.5; letter-spacing: -0.015em; margin: 0 0 16px; max-width: 28em; color: var(--kk-recess);">Antes de analizar métricas, contenido o ecommerce, hubo una observación mucho más simple.</p>
+        <p style="font-weight: 300; font-size: clamp(24px, 2.8vw, 42px); line-height: 1.25; letter-spacing: -0.018em; margin: 0; max-width: 22em;">Al entrar al local, recordé inmediatamente por qué CHECA había logrado construir una marca tan reconocida durante tantos años.</p>
+      </div>
+      <div data-reveal data-delay="150" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); margin-top: clamp(48px, 7vw, 96px);">
+        <h2 style="font-weight: 300; font-size: clamp(44px, 6vw, 92px); line-height: 1; letter-spacing: -0.025em; margin: 0; max-width: 11em;">La marca <span style="color: var(--kk-recess);">ya existe.</span></h2>
+      </div>
+      <div data-reveal data-delay="120" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(32px, 5vw, 80px); margin-top: clamp(48px, 7vw, 96px);">
+        <p style="font-weight: 300; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.6; margin: 0; color: var(--kk-recess);">CHECA no es una marca desconocida. Durante años construyó un lugar en la mente de sus clientas a través de un producto emblemático: <span style="color: var(--kk-fg);">el denim.</span></p>
+        <p style="font-weight: 300; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.6; margin: 0; color: var(--kk-recess);">Para muchas personas de La Plata, tener un jean de CHECA representaba <span style="color: var(--kk-fg);">calidad, estilo y pertenencia.</span></p>
+        <p style="font-weight: 300; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.6; margin: 0; color: var(--kk-recess);">La experiencia física actual confirma esa construcción de marca. CHECA evolucionó. <span style="color: var(--kk-fg);">Y esa evolución es visible en sus espacios físicos.</span></p>
+      </div>
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); border-top: 1px solid var(--kk-rule); margin-top: clamp(64px, 9vw, 120px); padding-top: 40px; display: grid; grid-template-columns: minmax(120px, 200px) 1fr; gap: 24px;">
+        <span class="kk-eyebrow" style="color: var(--kk-recess);">Insight</span>
+        <p style="font-weight: 300; font-size: clamp(22px, 2.6vw, 36px); line-height: 1.3; letter-spacing: -0.015em; margin: 0; max-width: 24em;">CHECA ha logrado evolucionar su experiencia retail física, pero todavía existe una oportunidad para trasladar completamente esa evolución al entorno digital.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CAPÍTULO 02 (crema) ====== -->
+  <section data-screen-label="02 La brecha" data-theme="light" style="background: var(--kk-bg); color: var(--kk-fg); padding: clamp(80px, 14vw, 180px) clamp(24px, 6vw, 120px); position: relative; overflow: hidden;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+        <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 28px;">02 — La brecha</div>
+        <h2 style="font-weight: 300; font-size: clamp(38px, 5vw, 76px); line-height: 1.02; letter-spacing: -0.025em; margin: 0; max-width: 14em;">La experiencia física y digital comunican <span style="color: var(--kk-recess);">distintos niveles de valor.</span></h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(40px, 6vw, 96px); margin-top: clamp(56px, 8vw, 112px);">
+        <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+          <div class="kk-eyebrow" style="color: var(--kk-recess); border-bottom: 1px solid var(--kk-fg); padding-bottom: 14px; margin-bottom: 8px;">Entorno físico</div>
+          <div style="font-weight: 300; font-size: clamp(19px, 1.9vw, 26px); padding: 18px 0; border-bottom: 1px solid var(--kk-rule);">Construcción de deseo</div>
+          <div style="font-weight: 300; font-size: clamp(19px, 1.9vw, 26px); padding: 18px 0; border-bottom: 1px solid var(--kk-rule);">Calidad percibida</div>
+          <div style="font-weight: 300; font-size: clamp(19px, 1.9vw, 26px); padding: 18px 0; border-bottom: 1px solid var(--kk-rule);">Visual merchandising actualizado</div>
+          <div style="font-weight: 300; font-size: clamp(19px, 1.9vw, 26px); padding: 18px 0; border-bottom: 1px solid var(--kk-rule);">Experiencia aspiracional</div>
+        </div>
+        <div data-reveal data-delay="150" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+          <div class="kk-eyebrow" style="color: var(--kk-recess); border-bottom: 1px solid var(--kk-rule); padding-bottom: 14px; margin-bottom: 8px;">Entorno digital</div>
+          <div style="font-weight: 300; font-size: clamp(19px, 1.9vw, 26px); padding: 18px 0; border-bottom: 1px solid var(--kk-rule); color: var(--kk-recess);">Menor construcción de deseo</div>
+          <div style="font-weight: 300; font-size: clamp(19px, 1.9vw, 26px); padding: 18px 0; border-bottom: 1px solid var(--kk-rule); color: var(--kk-recess);">Menor diferenciación</div>
+          <div style="font-weight: 300; font-size: clamp(19px, 1.9vw, 26px); padding: 18px 0; border-bottom: 1px solid var(--kk-rule); color: var(--kk-recess);">Oportunidades de mejora en navegación</div>
+          <div style="font-weight: 300; font-size: clamp(19px, 1.9vw, 26px); padding: 18px 0; border-bottom: 1px solid var(--kk-rule); color: var(--kk-recess);">Oportunidades de mejora en presentación de producto</div>
+        </div>
+      </div>
+      <div style="text-align: center; margin: clamp(96px, 14vw, 200px) 0 0;">
+        <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+          <p style="font-weight: 300; font-size: clamp(34px, 4.8vw, 80px); line-height: 1.05; letter-spacing: -0.025em; margin: 0;">El producto es el mismo.</p>
+        </div>
+        <div data-reveal data-delay="450" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+          <p style="font-weight: 300; font-size: clamp(34px, 4.8vw, 80px); line-height: 1.05; letter-spacing: -0.025em; margin: 0.25em 0 0; color: var(--kk-recess);">La percepción no.</p>
+        </div>
+      </div>
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); border-top: 1px solid var(--kk-rule); margin-top: clamp(64px, 9vw, 120px); padding-top: 40px; display: grid; grid-template-columns: minmax(120px, 200px) 1fr; gap: 24px;">
+        <span class="kk-eyebrow" style="color: var(--kk-recess);">Insight</span>
+        <p style="font-weight: 300; font-size: clamp(22px, 2.6vw, 36px); line-height: 1.3; letter-spacing: -0.015em; margin: 0; max-width: 24em;">La diferencia no parece estar en el producto. La diferencia parece estar en cómo el producto es percibido dentro de cada experiencia.</p>
+      </div>
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); text-align: center; margin-top: clamp(80px, 12vw, 160px);">
+        <p style="font-weight: 300; font-size: clamp(28px, 3.6vw, 54px); line-height: 1.15; letter-spacing: -0.022em; margin: 0 auto; max-width: 17em;">La oportunidad no está en cambiar el producto.<br><span style="color: var(--kk-recess);">Está en trasladar la experiencia.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CAPÍTULO 03 (ink) ====== -->
+  <section data-screen-label="03 Las consecuencias de la brecha" data-theme="dark" style="background: var(--kk-bg); color: var(--kk-fg); padding: clamp(80px, 14vw, 180px) clamp(24px, 6vw, 120px); position: relative; overflow: hidden;">
+    <div data-parallax="0.05" style="position: absolute; right: -2%; top: 4%; font-size: clamp(240px, 34vw, 540px); font-weight: 400; line-height: 1; color: var(--kk-fg); opacity: 0.04; pointer-events: none;">03</div>
+    <div style="position: relative; max-width: 1200px; margin: 0 auto;">
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+        <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 28px;">03 — Las consecuencias de la brecha</div>
+        <h2 style="font-weight: 300; font-size: clamp(38px, 5vw, 76px); line-height: 1.02; letter-spacing: -0.025em; margin: 0; max-width: 13em;">La brecha genera <span style="color: var(--kk-recess);">oportunidades perdidas.</span></h2>
+      </div>
+      <div style="margin-top: clamp(56px, 8vw, 112px);">
+        <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); display: grid; grid-template-columns: 80px 1fr; align-items: baseline; gap: 16px; border-top: 1px solid var(--kk-rule); padding: clamp(22px, 3vw, 36px) 0;">
+          <span class="kk-eyebrow" style="color: var(--kk-recess);">i</span>
+          <span style="font-weight: 300; font-size: clamp(24px, 3vw, 44px); letter-spacing: -0.022em;">Menor construcción de deseo</span>
+        </div>
+        <div data-reveal data-delay="100" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); display: grid; grid-template-columns: 80px 1fr; align-items: baseline; gap: 16px; border-top: 1px solid var(--kk-rule); padding: clamp(22px, 3vw, 36px) 0;">
+          <span class="kk-eyebrow" style="color: var(--kk-recess);">ii</span>
+          <span style="font-weight: 300; font-size: clamp(24px, 3vw, 44px); letter-spacing: -0.022em;">Menor aprovechamiento del catálogo</span>
+        </div>
+        <div data-reveal data-delay="200" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); display: grid; grid-template-columns: 80px 1fr; align-items: baseline; gap: 16px; border-top: 1px solid var(--kk-rule); padding: clamp(22px, 3vw, 36px) 0;">
+          <span class="kk-eyebrow" style="color: var(--kk-recess);">iii</span>
+          <span style="font-weight: 300; font-size: clamp(24px, 3vw, 44px); letter-spacing: -0.022em;">Menor conversión</span>
+        </div>
+        <div data-reveal data-delay="300" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); display: grid; grid-template-columns: 80px 1fr; align-items: baseline; gap: 16px; border-top: 1px solid var(--kk-rule); border-bottom: 1px solid var(--kk-rule); padding: clamp(22px, 3vw, 36px) 0;">
+          <span class="kk-eyebrow" style="color: var(--kk-recess);">iv</span>
+          <span style="font-weight: 300; font-size: clamp(24px, 3vw, 44px); letter-spacing: -0.022em;">Menor fidelización digital</span>
+        </div>
+      </div>
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); text-align: center; margin-top: clamp(80px, 12vw, 160px);">
+        <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 32px;">El hallazgo central</div>
+        <p style="font-weight: 300; font-size: clamp(28px, 3.8vw, 58px); line-height: 1.12; letter-spacing: -0.022em; margin: 0 auto; max-width: 16em;">El desafío no parece estar en el producto.<br><span style="color: var(--kk-recess);">El desafío parece estar en cómo ese producto es percibido digitalmente.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CAPÍTULO 04 (crema) ====== -->
+  <section data-screen-label="04 La oportunidad" data-theme="light" style="background: var(--kk-bg); color: var(--kk-fg); padding: clamp(80px, 14vw, 180px) clamp(24px, 6vw, 120px); position: relative; overflow: hidden;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+        <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 28px;">04 — La oportunidad</div>
+        <h2 style="font-weight: 300; font-size: clamp(38px, 5vw, 76px); line-height: 1.02; letter-spacing: -0.025em; margin: 0; max-width: 13em;">Amplificar lo que la marca <span style="color: var(--kk-recess);">ya construyó.</span></h2>
+      </div>
+      <div data-reveal data-delay="120" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); border-top: 1px solid var(--kk-rule); margin-top: clamp(48px, 7vw, 96px); padding-top: 40px; display: grid; grid-template-columns: minmax(120px, 200px) 1fr; gap: 24px;">
+        <span class="kk-eyebrow" style="color: var(--kk-recess);">Visión</span>
+        <p style="font-weight: 300; font-size: clamp(20px, 2.2vw, 30px); line-height: 1.4; letter-spacing: -0.015em; margin: 0; max-width: 26em;">Construir una experiencia omnicanal donde contenido, ecommerce y comunicación trabajen de manera integrada para reflejar el verdadero valor de la marca.</p>
+      </div>
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); margin-top: clamp(64px, 9vw, 120px);">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--kk-rule); padding-bottom: 14px; margin-bottom: clamp(28px, 4vw, 48px);">
+          <span class="kk-eyebrow">Hoy</span>
+          <span class="kk-eyebrow" style="color: var(--kk-recess);">Un recorrido lineal</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: clamp(10px, 1.6vw, 20px); flex-wrap: wrap;">
+          <span style="display: flex; align-items: center; gap: 10px;"><span style="width: 8px; height: 8px; border: 1px solid var(--kk-recess); border-radius: 999px; flex-shrink: 0;"></span><span style="font-weight: 300; font-size: clamp(17px, 1.8vw, 24px); color: var(--kk-recess);">Instagram</span></span>
+          <span style="flex: 1; min-width: 32px; height: 1px; background: var(--kk-fg); opacity: 0.2;"></span>
+          <span style="display: flex; align-items: center; gap: 10px;"><span style="width: 8px; height: 8px; border: 1px solid var(--kk-recess); border-radius: 999px; flex-shrink: 0;"></span><span style="font-weight: 300; font-size: clamp(17px, 1.8vw, 24px); color: var(--kk-recess);">Ecommerce</span></span>
+          <span style="flex: 1; min-width: 32px; height: 1px; background: var(--kk-fg); opacity: 0.2;"></span>
+          <span style="display: flex; align-items: center; gap: 10px;"><span style="width: 8px; height: 8px; border: 1px solid var(--kk-recess); border-radius: 999px; flex-shrink: 0;"></span><span style="font-weight: 300; font-size: clamp(17px, 1.8vw, 24px); color: var(--kk-recess);">Compra</span></span>
+          <span style="width: 1px; height: 18px; background: var(--kk-fg); opacity: 0.35;"></span>
+        </div>
+        <p style="font-size: 14px; font-weight: 300; color: var(--kk-recess); margin: 18px 0 0;">El recorrido termina en la compra.</p>
+      </div>
+      <div data-reveal data-delay="150" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); margin-top: clamp(56px, 8vw, 104px);">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--kk-rule); padding-bottom: 14px; margin-bottom: clamp(20px, 3vw, 36px);">
+          <span class="kk-eyebrow">Mañana</span>
+          <span class="kk-eyebrow" style="color: var(--kk-recess);">Un sistema conectado</span>
+        </div>
+        <div ref="{{ cirWrapRef }}" style="position: relative; width: 520px; max-width: 100%; height: 520px; margin: 0 auto;">
+          <div ref="{{ cirInnerRef }}" style="position: absolute; left: 0; top: 0; width: 520px; height: 520px; transform-origin: 0 0;">
+            <div style="position: absolute; left: 70px; top: 70px; width: 380px; height: 380px; border: 1px solid var(--kk-rule); border-radius: 999px;"></div>
+            <sc-for list="{{ cirNodes }}" as="cn" hint-placeholder-count="6">
+              <div style="{{ cn.posStyle }}">
+                <span style="{{ cn.dotStyle }}"></span>
+                <span style="display: block; font-size: 15px; font-weight: 400; margin-top: 6px;">{{ cn.name }}</span>
+              </div>
+            </sc-for>
+            <sc-for list="{{ cirArrows }}" as="ca" hint-placeholder-count="6">
+              <span style="{{ ca.style }}">→</span>
+            </sc-for>
+            <div style="position: absolute; left: 260px; top: 260px; transform: translate(-50%, -50%); text-align: center; width: 180px;">
+              <span style="display: inline-block; width: 6px; height: 6px; background: var(--kk-fg); border-radius: 999px; margin-bottom: 10px;"></span>
+              <div style="font-weight: 300; font-size: 17px; line-height: 1.35;">Cada compra inicia la siguiente.</div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 14px; font-weight: 300; color: var(--kk-recess); margin: 18px 0 0; text-align: center;">La recompra vuelve a alimentar el deseo.</p>
+      </div>
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); text-align: center; margin-top: clamp(80px, 12vw, 160px);">
+        <p style="font-weight: 300; font-size: clamp(28px, 3.6vw, 54px); line-height: 1.15; letter-spacing: -0.022em; margin: 0 auto; max-width: 17em;">La experiencia digital debe convertirse en una <span style="color: var(--kk-recess);">extensión natural</span> de la experiencia física.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CAPÍTULO 05 (ink) — mi rol + órbita ====== -->
+  <section data-screen-label="05 Mi rol y sistema de crecimiento" data-theme="dark" style="background: var(--kk-bg); color: var(--kk-fg); padding: clamp(80px, 14vw, 180px) clamp(24px, 6vw, 120px); position: relative; overflow: hidden;">
+    <div data-parallax="0.05" style="position: absolute; right: -2%; top: 2%; font-size: clamp(240px, 34vw, 540px); font-weight: 400; line-height: 1; color: var(--kk-fg); opacity: 0.04; pointer-events: none;">05</div>
+    <div style="position: relative; max-width: 1200px; margin: 0 auto;">
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+        <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 28px;">05 — Mi rol y sistema de crecimiento</div>
+        <h2 style="font-weight: 300; font-size: clamp(38px, 5vw, 76px); line-height: 1.02; letter-spacing: -0.025em; margin: 0; max-width: 13em;">El ecommerce <span style="color: var(--kk-recess);">no crece por sí solo.</span></h2>
+      </div>
+      <div data-reveal data-delay="120" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(32px, 5vw, 80px); margin-top: clamp(48px, 7vw, 96px);">
+        <div>
+          <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 16px;">Mi rol</div>
+          <p style="font-weight: 300; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6; margin: 0;">Actuar como puente entre la comunicación digital y el ecommerce para transformar la experiencia, el deseo y la percepción de valor que hoy existen en el mundo físico en oportunidades de crecimiento para el canal online.</p>
+        </div>
+        <div>
+          <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 16px;">El sistema</div>
+          <p style="font-weight: 300; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6; margin: 0; color: var(--kk-recess);">No depende únicamente del contenido. No depende únicamente del ecommerce. No depende únicamente del email marketing. <span style="color: var(--kk-fg);">El crecimiento ocurre cuando todas las áreas trabajan de forma integrada.</span></p>
+        </div>
+      </div>
+
+      <!-- Órbita -->
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); margin-top: clamp(56px, 8vw, 104px); display: flex; gap: clamp(32px, 4vw, 64px); align-items: center; flex-wrap: wrap;">
+        <div style="flex-shrink: 1; max-width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+        <div ref="{{ orbWrapRef }}" style="position: relative; width: 560px; max-width: 100%; height: 560px;">
+          <div ref="{{ orbInnerRef }}" style="position: absolute; left: 0; top: 0; width: 560px; height: 560px; transform-origin: 0 0;">
+            <div style="position: absolute; left: 70px; top: 70px; width: 420px; height: 420px; border: 1px solid var(--kk-rule); border-radius: 999px;"></div>
+            <div style="{{ orbRingStyle }}">
+              <sc-for list="{{ orbNodes }}" as="n" hint-placeholder-count="4">
+                <div style="{{ n.lineStyle }}"></div>
+                <button onClick="{{ n.onClick }}" style="{{ n.nodeStyle }}">
+                  <span style="{{ n.innerStyle }}">
+                    <span style="{{ n.dotStyle }}"></span>
+                    <span class="kk-eyebrow" style="color: var(--kk-recess); display: block; margin: 8px 0 4px;">{{ n.num }}</span>
+                    <span style="{{ n.nameStyle }}">{{ n.name }}</span>
+                  </span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="position: absolute; left: 280px; top: 280px; transform: translate(-50%, -50%); background: var(--kk-bg); text-align: center; padding: 18px 10px; width: 190px; z-index: 2;">
+              <span style="display: inline-block; width: 6px; height: 6px; background: var(--kk-fg); border-radius: 999px; margin-bottom: 10px;"></span>
+              <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 6px;">Resultado</div>
+              <div style="font-size: 21px; font-weight: 300; line-height: 1.15;">Crecimiento ecommerce</div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 13px; font-weight: 300; line-height: 1.6; color: var(--kk-recess); margin: 0; max-width: 380px; text-align: center;"><span style="display: inline-block; width: 6px; height: 6px; border: 1px solid var(--kk-recess); border-radius: 999px; margin-right: 8px; animation: kk-fade-pulse 2.6s ease-in-out infinite;"></span>Selecciona cada pilar para conocer qué incluye, por qué importa y qué impacto genera. La órbita se detiene mientras lees.</p>
+        </div>
+        <div style="flex: 1; min-width: min(100%, 300px);">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--kk-rule); padding-bottom: 12px; margin-bottom: 24px;">
+            <span class="kk-eyebrow" style="color: var(--kk-recess);">Pilar {{ orbDetail.num }} / 04</span>
+            <span class="kk-eyebrow" style="color: var(--kk-recess);">{{ orbStatus }}</span>
+          </div>
+          <h3 style="font-weight: 300; font-size: clamp(26px, 2.6vw, 36px); letter-spacing: -0.022em; margin: 0 0 28px 0;">{{ orbDetail.name }}</h3>
+          <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 10px;">Qué incluye</div>
+          <p style="font-size: 15px; font-weight: 300; line-height: 1.7; margin: 0 0 24px 0;">{{ orbDetail.includesLine }}</p>
+          <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 10px;">Por qué importa</div>
+          <p style="font-size: 15px; font-weight: 300; line-height: 1.7; margin: 0 0 24px 0;">{{ orbDetail.why }}</p>
+          <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 10px;">Impacto esperado</div>
+          <sc-for list="{{ orbDetail.impacts }}" as="imp" hint-placeholder-count="3">
+            <div style="font-size: 15px; font-weight: 400; padding: 7px 0; border-bottom: 1px solid var(--kk-rule);">{{ imp }}</div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); border-top: 1px solid var(--kk-rule); margin-top: clamp(64px, 9vw, 120px); padding-top: 40px; display: grid; grid-template-columns: minmax(120px, 200px) 1fr; gap: 24px;">
+        <span class="kk-eyebrow" style="color: var(--kk-recess);">Insight</span>
+        <p style="font-weight: 300; font-size: clamp(22px, 2.6vw, 36px); line-height: 1.3; letter-spacing: -0.015em; margin: 0; max-width: 24em;">Ningún pilar genera resultados por sí solo. La oportunidad consiste en construir un sistema donde marca, contenido, ecommerce, conversión e inteligencia de negocio trabajen en la misma dirección.</p>
+      </div>
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); text-align: center; margin-top: clamp(80px, 12vw, 160px);">
+        <p style="font-weight: 300; font-size: clamp(28px, 3.6vw, 54px); line-height: 1.15; letter-spacing: -0.022em; margin: 0 auto; max-width: 17em;">No se trata de hacer más.<br><span style="color: var(--kk-recess);">Se trata de lograr que todo trabaje en conjunto.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CAPÍTULO 06 (crema) — plan 90 días ====== -->
+  <section data-screen-label="06 Plan de evolución digital" data-theme="light" style="background: var(--kk-bg); color: var(--kk-fg); padding: clamp(80px, 14vw, 180px) clamp(24px, 6vw, 120px); position: relative; overflow: hidden;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+        <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 28px;">06 — Plan de evolución digital</div>
+        <h2 style="font-weight: 300; font-size: clamp(38px, 5vw, 76px); line-height: 1.02; letter-spacing: -0.025em; margin: 0;">Los primeros <span style="color: var(--kk-recess);">90 días.</span></h2>
+        <p style="font-weight: 300; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.6; margin: 28px 0 0; max-width: 32em; color: var(--kk-recess);">La evolución digital de CHECA comenzará desde el primer momento combinando análisis, estrategia y ejecución.</p>
+      </div>
+      <sc-for list="{{ months }}" as="mes" hint-placeholder-count="3">
+        <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); border-top: 1px solid var(--kk-fg); margin-top: clamp(48px, 7vw, 88px); padding-top: clamp(28px, 4vw, 44px);">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(28px, 4vw, 44px);">
+            <span style="font-weight: 300; font-size: clamp(28px, 3.4vw, 48px); letter-spacing: -0.022em;">{{ mes.title }}</span>
+            <span class="kk-eyebrow" style="color: var(--kk-recess);">{{ mes.num }}</span>
+          </div>
+          <sc-for list="{{ mes.blocks }}" as="blk" hint-placeholder-count="2">
+            <div style="margin-bottom: 36px;">
+              <sc-if value="{{ blk.hasLabel }}" hint-placeholder-val="{{ false }}">
+                <div class="kk-eyebrow" style="color: var(--kk-fg); border-bottom: 1px solid var(--kk-rule); padding-bottom: 10px; margin-bottom: 24px;">{{ blk.label }}</div>
+              </sc-if>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px 40px;">
+                <sc-for list="{{ blk.groups }}" as="g" hint-placeholder-count="4">
+                  <div>
+                    <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 12px;">{{ g.h }}</div>
+                    <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="4">
+                      <div style="font-size: 14px; font-weight: 400; line-height: 1.5; padding: 6px 0; border-bottom: 1px solid var(--kk-rule);">{{ it }}</div>
+                    </sc-for>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+          <div style="border-top: 1px solid var(--kk-rule); padding-top: 20px; display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap;">
+            <span class="kk-eyebrow" style="color: var(--kk-recess); flex-shrink: 0;">Resultado esperado</span>
+            <span style="font-weight: 300; font-size: clamp(17px, 1.6vw, 22px); letter-spacing: -0.015em;">{{ mes.result }}</span>
+          </div>
+        </div>
+      </sc-for>
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); border-top: 1px solid var(--kk-rule); margin-top: clamp(48px, 7vw, 88px); padding-top: 40px; display: grid; grid-template-columns: minmax(120px, 200px) 1fr; gap: 24px;">
+        <span class="kk-eyebrow" style="color: var(--kk-recess);">Después de los 90 días</span>
+        <p style="font-weight: 300; font-size: clamp(17px, 1.6vw, 22px); line-height: 1.5; margin: 0; max-width: 30em;">Una vez consolidada la estrategia y optimizada la experiencia actual, podrá evaluarse la evolución hacia una plataforma ecommerce propia alineada con los objetivos de crecimiento y posicionamiento de la marca.</p>
+      </div>
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); text-align: center; margin-top: clamp(80px, 12vw, 160px);">
+        <p style="font-weight: 300; font-size: clamp(26px, 3.2vw, 48px); line-height: 1.2; letter-spacing: -0.022em; margin: 0 auto; max-width: 19em;">La estrategia no termina en un diagnóstico.<br><span style="color: var(--kk-recess);">Se construye, se ejecuta, se mide y evoluciona constantemente.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CAPÍTULO 07 (ink) — cascada ====== -->
+  <section data-screen-label="07 Resultados esperados" data-theme="dark" style="background: var(--kk-bg); color: var(--kk-fg); padding: clamp(80px, 14vw, 180px) clamp(24px, 6vw, 120px); position: relative; overflow: hidden;">
+    <div data-parallax="0.05" style="position: absolute; right: -2%; top: 4%; font-size: clamp(240px, 34vw, 540px); font-weight: 400; line-height: 1; color: var(--kk-fg); opacity: 0.04; pointer-events: none;">07</div>
+    <div style="position: relative; max-width: 1200px; margin: 0 auto;">
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+        <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 28px;">07 — Resultados esperados</div>
+        <h2 style="font-weight: 300; font-size: clamp(38px, 5vw, 76px); line-height: 1.02; letter-spacing: -0.025em; margin: 0; max-width: 14em;">La evolución <span style="color: var(--kk-recess);">esperada.</span></h2>
+      </div>
+      <div style="text-align: center; margin-top: clamp(56px, 8vw, 112px);">
+        <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+          <div style="font-weight: 300; font-size: clamp(26px, 3vw, 44px); letter-spacing: -0.022em; color: var(--kk-recess);">Experiencia</div>
+        </div>
+        <div data-reveal data-delay="120" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+          <div style="width: 1px; height: clamp(28px, 4vw, 48px); background: var(--kk-fg); opacity: 0.3; margin: 14px auto;"></div>
+          <div style="font-weight: 300; font-size: clamp(30px, 3.6vw, 56px); letter-spacing: -0.022em; color: var(--kk-recess);">Deseo</div>
+        </div>
+        <div data-reveal data-delay="240" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+          <div style="width: 1px; height: clamp(28px, 4vw, 48px); background: var(--kk-fg); opacity: 0.3; margin: 14px auto;"></div>
+          <div style="font-weight: 300; font-size: clamp(34px, 4.4vw, 68px); letter-spacing: -0.022em; color: var(--kk-recess);">Conversión</div>
+        </div>
+        <div data-reveal data-delay="360" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+          <div style="width: 1px; height: clamp(28px, 4vw, 48px); background: var(--kk-fg); opacity: 0.3; margin: 14px auto;"></div>
+          <div style="font-weight: 300; font-size: clamp(38px, 5.2vw, 84px); letter-spacing: -0.022em; color: var(--kk-recess);">Fidelización</div>
+        </div>
+        <div data-reveal data-delay="480" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+          <div style="width: 1px; height: clamp(28px, 4vw, 48px); background: var(--kk-fg); opacity: 0.3; margin: 14px auto;"></div>
+          <div style="font-weight: 400; font-size: clamp(44px, 6.4vw, 104px); letter-spacing: -0.025em;">Crecimiento<span style="display: inline-block; width: 0.14em; height: 0.14em; background: var(--kk-fg); border-radius: 999px; margin-left: 0.1em;"></span></div>
+        </div>
+      </div>
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); text-align: center; margin-top: clamp(64px, 9vw, 120px);">
+        <p style="font-weight: 300; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.5; margin: 0 auto; max-width: 26em; color: var(--kk-recess);">El crecimiento sostenible ocurre cuando toda la experiencia trabaja en la misma dirección.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CAPÍTULO 08 (crema) — propuesta de trabajo ====== -->
+  <section data-screen-label="08 Propuesta de trabajo" data-theme="light" style="background: var(--kk-bg); color: var(--kk-fg); padding: clamp(80px, 14vw, 180px) clamp(24px, 6vw, 120px); position: relative; overflow: hidden;">
+    <div style="max-width: 880px; margin: 0 auto;">
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+        <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 28px;">08 — Propuesta de trabajo</div>
+        <h2 style="font-weight: 300; font-size: clamp(34px, 4.2vw, 60px); line-height: 1.05; letter-spacing: -0.025em; margin: 0;">Primera etapa de implementación.</h2>
+      </div>
+      <div data-reveal data-delay="80" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); margin-top: clamp(40px, 6vw, 72px);">
+        <div class="kk-eyebrow" style="color: var(--kk-recess); border-bottom: 1px solid var(--kk-rule); padding-bottom: 14px;">Qué contempla el acompañamiento</div>
+        <div style="display: grid; grid-template-columns: minmax(120px, 240px) 1fr; gap: 16px; align-items: baseline; border-bottom: 1px solid var(--kk-rule); padding: 16px 0;">
+          <span style="font-size: 15px; font-weight: 400;">Estrategia</span>
+          <span style="font-size: 15px; font-weight: 300; color: var(--kk-recess); line-height: 1.5;">Posicionamiento digital, pilares de contenido y prioridades.</span>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(120px, 240px) 1fr; gap: 16px; align-items: baseline; border-bottom: 1px solid var(--kk-rule); padding: 16px 0;">
+          <span style="font-size: 15px; font-weight: 400;">Dirección de contenido</span>
+          <span style="font-size: 15px; font-weight: 300; color: var(--kk-recess); line-height: 1.5;">Calendario editorial, dirección creativa y narrativa de marca.</span>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(120px, 240px) 1fr; gap: 16px; align-items: baseline; border-bottom: 1px solid var(--kk-rule); padding: 16px 0;">
+          <span style="font-size: 15px; font-weight: 400;">Ecommerce</span>
+          <span style="font-size: 15px; font-weight: 300; color: var(--kk-recess); line-height: 1.5;">Navegación, catálogo y experiencia de compra.</span>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(120px, 240px) 1fr; gap: 16px; align-items: baseline; border-bottom: 1px solid var(--kk-rule); padding: 16px 0;">
+          <span style="font-size: 15px; font-weight: 400;">Conversión</span>
+          <span style="font-size: 15px; font-weight: 300; color: var(--kk-recess); line-height: 1.5;">Email marketing, remarketing y funnels.</span>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(120px, 240px) 1fr; gap: 16px; align-items: baseline; border-bottom: 1px solid var(--kk-rule); padding: 16px 0;">
+          <span style="font-size: 15px; font-weight: 400;">Inteligencia de negocio</span>
+          <span style="font-size: 15px; font-weight: 300; color: var(--kk-recess); line-height: 1.5;">Auditorías, competencia, SEO y reportes.</span>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(120px, 240px) 1fr; gap: 16px; align-items: baseline; padding: 16px 0;">
+          <span style="font-size: 15px; font-weight: 400;">Optimización continua</span>
+          <span style="font-size: 15px; font-weight: 300; color: var(--kk-recess); line-height: 1.5;">Medición y mejora constante de toda la experiencia.</span>
+        </div>
+      </div>
+      <div data-reveal data-delay="120" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); margin-top: clamp(40px, 6vw, 72px);">
+        <div style="display: grid; grid-template-columns: minmax(120px, 240px) 1fr; gap: 24px; align-items: baseline; border-top: 1px solid var(--kk-fg); padding: 24px 0;">
+          <span class="kk-eyebrow" style="color: var(--kk-recess);">Objetivo</span>
+          <span style="font-weight: 300; font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.015em; line-height: 1.4;">Acompañar la evolución digital de CHECA mediante una estrategia integrada de contenido, ecommerce y conversión.</span>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(120px, 240px) 1fr; gap: 24px; align-items: baseline; border-top: 1px solid var(--kk-rule); padding: 24px 0;">
+          <span class="kk-eyebrow" style="color: var(--kk-recess);">Modalidad</span>
+          <span style="font-weight: 300; font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.015em;">Acompañamiento estratégico integral</span>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(120px, 240px) 1fr; gap: 24px; align-items: baseline; border-top: 1px solid var(--kk-rule); padding: 24px 0;">
+          <span class="kk-eyebrow" style="color: var(--kk-recess);">Duración inicial</span>
+          <span style="font-weight: 300; font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.015em;">90 días</span>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(120px, 240px) 1fr; gap: 24px; align-items: baseline; border-top: 1px solid var(--kk-rule); border-bottom: 1px solid var(--kk-fg); padding: 24px 0;">
+          <span class="kk-eyebrow" style="color: var(--kk-recess);">Fee mensual</span>
+          <span style="font-weight: 300; font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.015em;">$1.800.000 ARS</span>
+        </div>
+        <p style="font-size: 14px; font-weight: 300; color: var(--kk-recess); margin: 20px 0 0;">Un único acompañamiento que integra las seis áreas del sistema.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CAPÍTULO 09 (ink) — cierre editorial ====== -->
+  <section data-screen-label="09 Una oportunidad de evolución" data-theme="dark" style="background: var(--kk-bg); color: var(--kk-fg); min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(80px, 12vw, 160px) clamp(24px, 6vw, 120px) clamp(32px, 4vw, 48px); position: relative; overflow: hidden;">
+    <div data-parallax="0.04" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: clamp(300px, 50vw, 800px); font-weight: 400; line-height: 1; color: var(--kk-fg); opacity: 0.025; pointer-events: none; white-space: nowrap;">09</div>
+    <div style="position: relative; max-width: 1200px; margin: 0 auto; width: 100%;">
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease);">
+        <div class="kk-eyebrow" style="color: var(--kk-recess); margin-bottom: 28px;">09 — Una oportunidad de evolución</div>
+      </div>
+      <div data-reveal data-delay="150" style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); margin-top: clamp(40px, 8vh, 96px);">
+        <p style="font-weight: 300; font-size: clamp(28px, 4vw, 62px); line-height: 1.12; letter-spacing: -0.025em; margin: 0; max-width: 18em;">Durante años CHECA construyó una marca que las personas recuerdan.<br><span style="color: var(--kk-recess);">La oportunidad ahora es lograr que cada experiencia digital transmita el mismo valor, confianza y aspiracionalidad que hoy transmite el retail físico.</span></p>
+      </div>
+    </div>
+    <div style="position: relative; max-width: 1200px; margin: 0 auto; width: 100%;">
+      <div data-reveal style="opacity: 0; transform: translateY(28px); transition: opacity 1000ms var(--kk-ease), transform 1000ms var(--kk-ease); border-top: 1px solid var(--kk-rule); padding-top: 24px; display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap;">
+        <span class="kk-eyebrow" style="color: var(--kk-recess);">CHECA — Propuesta estratégica de evolución digital</span>
+        <span style="font-size: 13px; color: var(--kk-recess);">Estrategia y dirección creativa × Karen Kairiyama · La Plata · Junio 2026</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sel: 0, play: true };
+
+  _hL = [];
+  _curW = [400, 400, 400, 400, 400];
+  _mouseX = null;
+  _raf = 0;
+  _orbT = 0;
+  _refs = {};
+  _haloPos = { x: -100, y: -100, tx: -100, ty: -100, scale: 1, curScale: 1, on: false };
+  _cleanup = [];
+
+  get pillars() {
+    return [
+      {
+        num: '01', name: 'Experiencia de marca',
+        includes: ['Branding', 'Storytelling', 'Estrategia de contenido', 'Dirección visual', 'Posicionamiento'],
+        why: 'Hoy el local transmite una experiencia sólida, aspiracional y coherente con la evolución de la marca. La oportunidad consiste en trasladar esa misma percepción al entorno digital.',
+        impacts: ['Mayor percepción de valor', 'Mayor diferenciación', 'Mayor construcción de deseo']
+      },
+      {
+        num: '02', name: 'Experiencia de compra',
+        includes: ['UX', 'CRO', 'Navegación', 'Catálogo', 'Stock', 'Recorrido de compra'],
+        why: 'El ecommerce es uno de los principales puntos de contacto entre la marca y sus clientes. La experiencia de compra debe transmitir el mismo valor que hoy transmite el retail físico.',
+        impacts: ['Menos fricción', 'Mayor exploración de productos', 'Mayor intención de compra']
+      },
+      {
+        num: '03', name: 'Retención y conversión',
+        includes: ['Email marketing', 'Remarketing', 'Métricas', 'Funnels', 'WhatsApp'],
+        why: 'CHECA ya cuenta con herramientas y automatizaciones funcionando. La oportunidad consiste en optimizarlas para fortalecer la relación con los clientes y mejorar la conversión.',
+        impacts: ['Mayor recompra', 'Mayor fidelización', 'Mayor conversión']
+      },
+      {
+        num: '04', name: 'Inteligencia de negocio',
+        includes: ['Auditorías', 'Competencia', 'SEO', 'Análisis de oportunidades', 'Reportes'],
+        why: 'Las mejores decisiones surgen de entender qué funciona, qué oportunidades existen y cómo evoluciona el mercado.',
+        impacts: ['Mejores decisiones estratégicas', 'Detección temprana de oportunidades', 'Optimización continua']
+      }
+    ];
+  }
+
+  componentDidMount() {
+    const finePointer = window.matchMedia('(pointer: fine)').matches;
+    const gauss = (d, s) => Math.exp(-(d * d) / (2 * s * s));
+
+    // --- Tracking del masthead: igualar al ancho de la fuente estática (A2.2) ---
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        const t = this._refs.heroTitle;
+        if (!t) return;
+        const mk = (ff, extra) => {
+          const s = document.createElement('span');
+          s.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font-size:200px;letter-spacing:-0.04em;font-family:' + ff + ';' + (extra || '');
+          s.textContent = 'CHECA';
+          document.body.appendChild(s);
+          return s;
+        };
+        const pv = mk("'Outfit Variable'", "font-variation-settings:'wght' 400;");
+        const ps = mk("'Outfit'", 'font-weight:400;');
+        const wv = pv.getBoundingClientRect().width;
+        const ws = ps.getBoundingClientRect().width;
+        pv.remove(); ps.remove();
+        if (wv > 0 && ws > 0 && Math.abs(wv - ws) > 1) {
+          const extraEm = (wv - ws) / 5 / 200;
+          t.style.letterSpacing = (-0.04 - extraEm).toFixed(4) + 'em';
+        }
+      });
+    }
+
+    // --- Reveals por scroll (chequeo por rect — sin IntersectionObserver) ---
+    const revealCheck = () => {
+      document.querySelectorAll('[data-reveal]').forEach((el) => {
+        if (el.dataset.revealed) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 0.88 && r.bottom > 0) {
+          const d = el.getAttribute('data-delay');
+          if (d) el.style.transitionDelay = d + 'ms';
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+          el.dataset.revealed = '1';
+        }
+      });
+    };
+    const scan = () => {
+      document.querySelectorAll('[data-parallax]').forEach((el) => {
+        if (el.dataset.pBase) return;
+        el.dataset.pBase = String(el.getBoundingClientRect().top + window.scrollY + el.offsetHeight / 2);
+      });
+      revealCheck();
+    };
+    scan();
+    const scanTimers = [600, 1500, 3000, 6000].map((ms) => setTimeout(scan, ms));
+    this._cleanup.push(() => scanTimers.forEach(clearTimeout));
+    this._revealCheck = revealCheck;
+
+    // --- Scroll: progreso, topbar, parallax ---
+    const onScroll = () => {
+      if (this._revealCheck) this._revealCheck();
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const y = window.scrollY;
+      if (this._refs.progress) this._refs.progress.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
+      if (this._refs.topbar) {
+        const show = y > window.innerHeight * 0.55;
+        this._refs.topbar.style.opacity = show ? '1' : '0';
+      }
+      if (this._refs.heroGlow) this._refs.heroGlow.style.transform = 'translateY(' + (y * 0.3) + 'px)';
+      document.querySelectorAll('[data-parallax]').forEach((el) => {
+        const base = parseFloat(el.dataset.pBase || '0');
+        if (!base) return;
+        const f = parseFloat(el.getAttribute('data-parallax') || '0.05');
+        const delta = (y + window.innerHeight / 2 - base) * f;
+        const keep = el.style.transform.indexOf('translate(-50%') === 0 ? 'translate(-50%, -50%) ' : '';
+        el.style.transform = keep + 'translateY(' + delta.toFixed(1) + 'px)';
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    this._cleanup.push(() => window.removeEventListener('scroll', onScroll));
+
+    // --- Escala responsive de la órbita ---
+    const sizeOrbit = () => {
+      [['orbWrap', 'orbInner', 560], ['cirWrap', 'cirInner', 520]].forEach((pair) => {
+        const w = this._refs[pair[0]], inner = this._refs[pair[1]];
+        if (!w || !inner) return;
+        const sc = Math.min(1, w.clientWidth / pair[2]);
+        inner.style.transform = 'scale(' + sc + ')';
+        w.style.height = (pair[2] * sc) + 'px';
+      });
+    };
+    sizeOrbit();
+    window.addEventListener('resize', sizeOrbit);
+    const orbSizeT = setTimeout(sizeOrbit, 800);
+    this._cleanup.push(() => { window.removeEventListener('resize', sizeOrbit); clearTimeout(orbSizeT); });
+
+    // --- Cursor halo + peso vivo (solo pointer fine) ---
+    if (finePointer) {
+      const onMove = (e) => {
+        const h = this._haloPos;
+        h.tx = e.clientX; h.ty = e.clientY; h.on = true;
+        const hot = e.target.closest && e.target.closest('button, a');
+        h.scale = hot ? 2 : 1;
+      };
+      window.addEventListener('mousemove', onMove, { passive: true });
+      this._cleanup.push(() => window.removeEventListener('mousemove', onMove));
+
+      const tick = () => {
+        // halo
+        const h = this._haloPos;
+        h.x += (h.tx - h.x) * 0.16;
+        h.y += (h.ty - h.y) * 0.16;
+        h.curScale += (h.scale - h.curScale) * 0.16;
+        const halo = this._refs.halo;
+        if (halo && h.on) {
+          halo.style.opacity = '1';
+          halo.style.transform = 'translate(' + (h.x - 16) + 'px, ' + (h.y - 16) + 'px) scale(' + h.curScale.toFixed(3) + ')';
+          halo.style.background = h.curScale > 1.5 ? '#F5F0D0' : 'transparent';
+        }
+        // peso vivo
+        this._hL.forEach((el, i) => {
+          if (!el) return;
+          let target = 400;
+          if (this._mouseX !== null) {
+            const r = el.getBoundingClientRect();
+            if (r.bottom > 0 && r.top < window.innerHeight) {
+              target = 400 + 190 * gauss(r.left + r.width / 2 - this._mouseX, Math.max(110, r.width));
+            }
+          }
+          this._curW[i] += (target - this._curW[i]) * 0.14;
+          el.style.fontVariationSettings = "'wght' " + this._curW[i].toFixed(1);
+        });
+        this._raf = requestAnimationFrame(tick);
+      };
+      this._raf = requestAnimationFrame(tick);
+      this._cleanup.push(() => cancelAnimationFrame(this._raf));
+    }
+  }
+
+  componentWillUnmount() {
+    this._cleanup.forEach((fn) => fn());
+    clearTimeout(this._orbT);
+  }
+
+  renderVals() {
+    const ease = 'cubic-bezier(0.22, 1, 0.36, 1)';
+    const P = this.pillars;
+    const { sel, play } = this.state;
+    const C = 280, R = 210;
+    const playState = play ? 'running' : 'paused';
+
+    const orbNodes = P.map((p, i) => {
+      const isSel = i === sel;
+      const a = 45 + 90 * i;
+      const rad = a * Math.PI / 180;
+      const x = C + R * Math.cos(rad);
+      const y = C + R * Math.sin(rad);
+      return Object.assign({}, p, {
+        onClick: () => {
+          clearTimeout(this._orbT);
+          this.setState({ sel: i, play: false });
+          this._orbT = setTimeout(() => this.setState({ play: true }), 6000);
+        },
+        lineStyle: {
+          position: 'absolute', left: C + 'px', top: C + 'px',
+          width: R + 'px', height: '1px',
+          background: 'var(--kk-fg)',
+          opacity: isSel ? 0.55 : 0.14,
+          transformOrigin: '0 50%',
+          transform: 'rotate(' + a + 'deg)',
+          transition: 'opacity 320ms ' + ease,
+          pointerEvents: 'none'
+        },
+        nodeStyle: {
+          all: 'unset', cursor: 'pointer', position: 'absolute',
+          left: x + 'px', top: y + 'px',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 1
+        },
+        innerStyle: {
+          display: 'block', textAlign: 'center', width: '160px',
+          background: 'var(--kk-bg)', padding: '10px 6px',
+          animation: 'kk-orbit-rev 56s linear infinite',
+          animationPlayState: playState
+        },
+        dotStyle: {
+          display: 'inline-block', width: '9px', height: '9px',
+          borderRadius: '999px',
+          border: '1px solid var(--kk-fg)',
+          background: isSel ? 'var(--kk-fg)' : 'transparent',
+          transition: 'background 320ms ' + ease,
+          animation: isSel ? 'none' : 'kk-fade-pulse 2.6s ease-in-out infinite',
+          animationDelay: (i * 0.4) + 's'
+        },
+        nameStyle: {
+          fontSize: '16px', fontWeight: isSel ? 400 : 300,
+          letterSpacing: '-0.015em', lineHeight: 1.2, display: 'block',
+          color: 'var(--kk-fg)',
+          opacity: isSel ? 1 : 0.6,
+          transition: 'opacity 320ms ' + ease
+        }
+      });
+    });
+    const d = P[sel];
+
+    // Capítulo 04 — circuito Estado Futuro
+    const cirNames = ['Contenido', 'Deseo', 'Ecommerce', 'Email marketing', 'Fidelización', 'Recompra'];
+    const cC = 260, cR = 190;
+    const cirNodes = cirNames.map((name, i) => {
+      const th = (-90 + 60 * i) * Math.PI / 180;
+      return {
+        name,
+        posStyle: {
+          position: 'absolute',
+          left: (cC + cR * Math.cos(th)).toFixed(1) + 'px',
+          top: (cC + cR * Math.sin(th)).toFixed(1) + 'px',
+          transform: 'translate(-50%, -50%)',
+          textAlign: 'center',
+          background: 'var(--kk-bg)',
+          padding: '6px 10px',
+          zIndex: 1
+        },
+        dotStyle: {
+          display: 'inline-block', width: '8px', height: '8px',
+          borderRadius: '999px', background: 'var(--kk-fg)'
+        }
+      };
+    });
+    const cirArrows = cirNames.map((x, i) => {
+      const am = -60 + 60 * i;
+      const th = am * Math.PI / 180;
+      return {
+        style: {
+          position: 'absolute',
+          left: (cC + cR * Math.cos(th)).toFixed(1) + 'px',
+          top: (cC + cR * Math.sin(th)).toFixed(1) + 'px',
+          transform: 'translate(-50%, -50%) rotate(' + (am + 90) + 'deg)',
+          color: 'var(--kk-recess)',
+          fontSize: '15px',
+          lineHeight: 1,
+          background: 'var(--kk-bg)',
+          padding: '1px 3px'
+        }
+      };
+    });
+
+    const months = [
+      {
+        num: 'Mes 01', title: 'Diagnóstico, estrategia y bases',
+        blocks: [
+          {
+            label: 'Semana 1 y 2', hasLabel: true,
+            groups: [
+              { h: 'Auditoría integral', items: ['Ecommerce', 'Contenido', 'Competencia', 'SEO', 'Email marketing', 'Experiencia digital'] },
+              { h: 'Identificación de oportunidades', items: ['Quick wins', 'Fricciones', 'Oportunidades de conversión', 'Oportunidades de contenido'] },
+              { h: 'Definición estratégica', items: ['Posicionamiento digital', 'Pilares de contenido', 'Objetivos', 'Prioridades'] },
+              { h: 'Calendario editorial', items: ['Planificación mensual', 'Temáticas', 'Campañas', 'Fechas comerciales'] },
+              { h: 'Aprobación estratégica', items: ['Validación de la estrategia y definición de prioridades para los próximos meses'] }
+            ]
+          },
+          {
+            label: 'Semana 3 y 4', hasLabel: true,
+            groups: [
+              { h: 'Inicio de ejecución', items: ['Producción de contenido', 'Dirección creativa', 'Coordinación de shootings', 'Organización de activos digitales'] },
+              { h: 'Ecommerce', items: ['Identificación de mejoras prioritarias', 'Revisión de catálogo', 'Revisión de experiencia de producto', 'Revisión de comunicación comercial'] },
+              { h: 'Email marketing', items: ['Diagnóstico de automatizaciones', 'Identificación de mejoras'] }
+            ]
+          }
+        ],
+        result: 'Una estrategia validada y una nueva base de comunicación en funcionamiento.'
+      },
+      {
+        num: 'Mes 02', title: 'Ejecución e integración',
+        blocks: [
+          {
+            label: '', hasLabel: false,
+            groups: [
+              { h: 'Contenido', items: ['Implementación del calendario editorial', 'Producción continua', 'Optimización de formatos', 'Construcción de narrativa de marca'] },
+              { h: 'Ecommerce', items: ['Implementación de mejoras priorizadas', 'Optimización visual de producto', 'Optimización de experiencia de compra'] },
+              { h: 'Conversión', items: ['Mejoras en email marketing', 'Remarketing', 'Comunicación de promociones', 'Integración Instagram ↔ ecommerce'] }
+            ]
+          }
+        ],
+        result: 'Una experiencia digital más coherente, conectada y alineada con la propuesta de valor de CHECA.'
+      },
+      {
+        num: 'Mes 03', title: 'Optimización y crecimiento',
+        blocks: [
+          {
+            label: '', hasLabel: false,
+            groups: [
+              { h: 'Análisis de resultados', items: ['Métricas', 'Contenido', 'Ecommerce', 'Conversión'] },
+              { h: 'Optimización continua', items: ['CRO', 'Funnels', 'Email marketing', 'Fidelización'] },
+              { h: 'Nuevas oportunidades', items: ['SEO', 'Campañas comerciales', 'Estrategias de remarketing', 'Acciones estacionales'] },
+              { h: 'Roadmap futuro', items: ['Definición de oportunidades para la siguiente etapa de evolución digital'] }
+            ]
+          }
+        ],
+        result: 'Un ecosistema digital más eficiente, medible y preparado para escalar.'
+      }
+    ];
+
+    return {
+      hL0: (el) => { this._hL[0] = el; },
+      hL1: (el) => { this._hL[1] = el; },
+      hL2: (el) => { this._hL[2] = el; },
+      hL3: (el) => { this._hL[3] = el; },
+      hL4: (el) => { this._hL[4] = el; },
+      heroTitleRef: (el) => { this._refs.heroTitle = el; },
+      heroGlowRef: (el) => { this._refs.heroGlow = el; },
+      heroMove: (e) => { this._mouseX = e.clientX; },
+      heroLeave: () => { this._mouseX = null; },
+      progressRef: (el) => { this._refs.progress = el; },
+      topbarRef: (el) => { this._refs.topbar = el; },
+      haloRef: (el) => { this._refs.halo = el; },
+      orbWrapRef: (el) => { this._refs.orbWrap = el; },
+      orbInnerRef: (el) => { this._refs.orbInner = el; },
+      orbRingStyle: {
+        position: 'absolute', inset: 0,
+        animation: 'kk-orbit 56s linear infinite',
+        animationPlayState: playState
+      },
+      orbNodes,
+      orbDetail: Object.assign({}, d, { includesLine: d.includes.join('  ·  ') }),
+      orbStatus: play ? 'Órbita — activa' : 'Órbita — en pausa',
+      cirNodes, cirArrows,
+      cirWrapRef: (el) => { this._refs.cirWrap = el; },
+      cirInnerRef: (el) => { this._refs.cirInner = el; },
+      months
+    };
+  }
+}
+</script>
+</body>
+</html>
